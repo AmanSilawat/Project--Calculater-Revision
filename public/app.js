@@ -1,6 +1,6 @@
 // Get Elements
 const calcWrap = document.querySelectorAll('#calc-buttons .calc-button');
-const displayCalc = document.querySelector('#calc #screen');
+const displayCalc = document.querySelector('#screen');
 
 let operand = [];
 let operator;
@@ -52,8 +52,8 @@ function pressBtn(event) {
     if (
         targetEleTxt == '+' ||
         targetEleTxt == '-' ||
-        targetEleTxt == '×' ||
-        targetEleTxt == '÷'
+        targetEleTxt == '*' ||
+        targetEleTxt == '/'
     ) {
         operator = targetEleTxt;
         handleTotal(operator);
@@ -90,17 +90,7 @@ function methOperation(operator) {
     let x = operand.shift();
     let y = operand.shift();
 
-    if (operator == '+') {
-        operand.push(x + y);
-    }
-    if (operator == '-') {
-        operand.push(x - y);
-    }
-    if (operator == '×') {
-        operand.push(x * y);
-    }
-    if (operator == '÷') {
-        operand.push(x / y);
-    }
+    operand.push( eval(`${x} ${operator} ${y}`) );
+    
     operator = undefined;
 }
